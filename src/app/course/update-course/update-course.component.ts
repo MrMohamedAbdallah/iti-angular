@@ -23,7 +23,7 @@ export class UpdateCourseComponent implements OnInit {
 
 
   updateCourse(){
-    this._http.post('update_course', {
+    this._http.post('http://127.0.0.1:5000/update_course', {
       "crs_id": this.course.CrsId,
       "topic_id": this.newTopicID,
       "crs_name": this.course.CrsName

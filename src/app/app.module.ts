@@ -4,21 +4,26 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateCourseComponent } from './course/update-course/update-course.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { CreateComponent } from './questions/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    QuestionsComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

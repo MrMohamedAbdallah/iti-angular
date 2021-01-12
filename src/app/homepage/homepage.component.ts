@@ -21,7 +21,7 @@ export class HomepageComponent implements OnInit {
   }
 
   addCourse(){
-    this._http.post("/add_course", {
+    this._http.post("http://127.0.0.1:5000/add_course", {
       Topic_id: 5,
       course_name: this.courseName
     })
@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit {
 
   fetchCourses(){
     // Get courses from API
-    this._http.get('get_courses') 
+    this._http.get('http://127.0.0.1:5000/get_courses') 
     .subscribe((data: any )=> {
       this.courses = data.result;
     })
@@ -49,7 +49,7 @@ export class HomepageComponent implements OnInit {
 
   fetchTopics(){
     // Get courses from API
-    this._http.get('get_topics') 
+    this._http.get('http://127.0.0.1:5000/get_topics') 
     .subscribe((data: any )=> {
       this.topics = data.result;
     })
