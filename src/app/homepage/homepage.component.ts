@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomepageComponent implements OnInit {
 
-  questionType: string = 'mcq';
   courses: any[] = [];
   topics: any[] = [];
   courseName: string = "";
