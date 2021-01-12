@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-6 my-2">
+        <div class="form-group">
+            <input type="text" name="course_name" class="form-control" [(ngModel)]="course.CrsName">
+        </div>
+    </div>
+    <div class="col-md-6 my-2">
+        <div class="form-group">
+            <button 
+                class="btn btn-primary" 
+                [disabled]="course.CrsName.length < 2"
+                (click)="updateCourse()">Update</button>
+        </div>
+    </div>
+
+    <div class="alert alert-primary" *ngIf="noti">
+        <small>{{ noti }}</small>
+    </div>
+
+</div>
