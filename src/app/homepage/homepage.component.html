@@ -3,7 +3,7 @@
         <div class="col-12 col-md-8 mx-auto">
             <h1 class="text-center">From</h1>
             <div *ngFor="let c of courses">
-                <app-update-course [course]="c"></app-update-course> 
+                <app-update-course [course]="c" [topics]="topics" (updated)="fetchCourses()"></app-update-course> 
             </div>
             <div class="card card-body my-5">
                 <form class="">

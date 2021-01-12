@@ -11,12 +11,14 @@ export class HomepageComponent implements OnInit {
 
   questionType: string = 'mcq';
   courses: any[] = [];
+  topics: any[] = [];
   courseName: string = "";
 
   constructor(private _http: HttpClient) { }
 
   ngOnInit(): void {
     this.fetchCourses();
+    this.fetchTopics();
   }
 
   addCourse(){
@@ -42,6 +44,15 @@ export class HomepageComponent implements OnInit {
     this._http.get('get_courses') 
     .subscribe((data: any )=> {
       this.courses = data.result;
+    })
+  }
+
+
+  fetchTopics(){
+    // Get courses from API
+    this._http.get('get_topics') 
+    .subscribe((data: any )=> {
+      this.topics = data.result;
     })
   }
 

@@ -1,10 +1,20 @@
 <div class="row">
+    <div class="col-md-3 my-2">
+        <div class="form-group">
+            <select name="topic_id" [(ngModel)]="newTopicID" class="form-control">
+                <option value="">--- Choose Topic ---</option>
+                <option 
+                    *ngFor="let t of topics" 
+                    [value]="t.TopId" >{{ t.TopicName }}</option>
+            </select>
+        </div>
+    </div>
     <div class="col-md-6 my-2">
         <div class="form-group">
             <input type="text" name="course_name" class="form-control" [(ngModel)]="course.CrsName">
         </div>
     </div>
-    <div class="col-md-6 my-2">
+    <div class="col-md-3 my-2">
         <div class="form-group">
             <button 
                 class="btn btn-primary" 
@@ -13,8 +23,10 @@
         </div>
     </div>
 
-    <div class="alert alert-primary" *ngIf="noti">
-        <small>{{ noti }}</small>
+    <div class="col-12">
+        <div class="alert alert-primary" *ngIf="noti">
+            <small>{{ noti }}</small>
+        </div>
     </div>
 
 </div>

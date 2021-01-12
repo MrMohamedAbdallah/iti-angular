@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-update-course',
@@ -9,19 +9,23 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UpdateCourseComponent implements OnInit {
 
   @Input('course') course: any;
+  @Input('topics') topics: any[] = [];
+  @Output('updated') updated: EventEmitter<any> = new EventEmitter<any>();
   noti: string = '';
+  newTopicID: number;
+
 
   constructor(private _http: HttpClient) { }
 
   ngOnInit(): void {
-    console.log(this.course);
+    this.newTopicID = this.course.TopicId;
   }
 
 
   updateCourse(){
     this._http.post('update_course', {
       "crs_id": this.course.CrsId,
-      "topic_id": this.course.TopicId,
+      "topic_id": this.newTopicID,
       "crs_name": this.course.CrsName
     })
     .subscribe((data) => {
@@ -30,6 +34,8 @@ export class UpdateCourseComponent implements OnInit {
       setTimeout(()=>{
         this.noti = '';
       }, 5000);
+
+      // this.updated.emit();
     },
       (err) => {
         console.log("Course Update Error");
