@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div class="card card-body my-4">
+                <form class="form-inline" [formGroup]="examForm" (ngSubmit)="getQuestions()">
+                    <div class="form-group">
+                        <label>Exam ID:</label>
+                        <input type="number" class="ml-4 form-control" formControlName="exam_id">
+                    </div>
+                    <div class="form-group ml-4">
+                        <button type="submit" class="btn btn-primary" [disabled]="!examForm.valid">Get
+                            Questions</button>
+                    </div>
+                </form>
+            </div>
+
+            <h6>
+                # Questions: {{ questions.length }}
+            </h6>
+            <!-- ============= Questions ============= -->
+            <form [formGroup]="answersForm" *ngIf="questions.length" (ngSubmit)="submitAnswers()">
+                <div *ngFor="let q of questions">
+                    <div class="card my-3">
+                        <div class="card-header">
+                            <h6 class="card-title">{{ q.question }}</h6>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- True And False -->
+                            <div class="form-group" *ngIf="q.QuestionType == 'TrueAndFalse'">
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_A"> True
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_B"> False
+                                </div>
+                            </div>
+
+                            <!-- MCQ -->
+                            <div class="form-group" *ngIf="q.QuestionType == 'MCQ'">
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_A"> {{ q.Ans_A }}
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_B"> {{ q.Ans_B }}
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_C"> {{ q.Ans_C }}
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" [formControlName]="q.inputName" value="Ans_D"> {{ q.Ans_D }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="form-group my-4">
+                    <button class="btn btn-primary" [disabled]="!answersForm.valid">Submit Answers</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

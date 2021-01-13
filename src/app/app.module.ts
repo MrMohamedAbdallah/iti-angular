@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateCourseComponent } from './course/update-course/update-course.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { CreateComponent } from './questions/create/create.component';
+import { SubmitComponent } from './exams/submit/submit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CreateComponent } from './questions/create/create.component';
     HomepageComponent,
     UpdateCourseComponent,
     QuestionsComponent,
-    CreateComponent
+    CreateComponent,
+    SubmitComponent
   ],
   imports: [
     BrowserModule,
