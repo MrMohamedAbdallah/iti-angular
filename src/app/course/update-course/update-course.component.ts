@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-update-course',
@@ -13,12 +14,19 @@ export class UpdateCourseComponent implements OnInit {
   @Output('updated') updated: EventEmitter<any> = new EventEmitter<any>();
   noti: string = '';
   newTopicID: number;
+  updateForm: FormGroup;
 
 
   constructor(private _http: HttpClient) { }
 
   ngOnInit(): void {
     this.newTopicID = this.course.TopicId;
+
+    this.updateForm = new FormGroup({
+      'TF': new FormControl(''),
+      'MCQ': new FormControl(''),
+      // 'date': new FormControl('')
+    });
   }
 
 
@@ -42,6 +50,23 @@ export class UpdateCourseComponent implements OnInit {
         console.error(err);
       }
     );
+  }
+
+  submitCreateExam(){
+    this._http.post('http://127.0.0.1:5000/generate_exam', {
+      'course_id': this.course.CrsId,
+      ...this.updateForm.value
+    }).subscribe(
+      (res)=>{
+        console.log('Exam Generated');
+        console.log(res);
+        this.updateForm.reset();
+      },
+      (err)=>{
+        console.log('Generate Exam Error');
+        console.error(err);
+      }
+    )
   }
 
 }

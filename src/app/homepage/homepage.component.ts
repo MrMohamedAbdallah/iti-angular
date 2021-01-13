@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit {
   courses: any[] = [];
   topics: any[] = [];
   courseName: string = "";
+  selectedCourse: any = null;
 
   constructor(private _http: HttpClient) { }
 
