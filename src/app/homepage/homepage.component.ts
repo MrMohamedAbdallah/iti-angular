@@ -13,6 +13,7 @@ export class HomepageComponent implements OnInit {
   topics: any[] = [];
   courseName: string = "";
   selectedCourse: any = null;
+  TopicID: any = null;
 
   constructor(private _http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class HomepageComponent implements OnInit {
 
   addCourse(){
     this._http.post("http://127.0.0.1:5000/add_course", {
-      Topic_id: 5,
+      Topic_id: this.TopicID,
       course_name: this.courseName
     })
     .subscribe(
