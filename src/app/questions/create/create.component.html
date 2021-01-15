@@ -1,85 +1,86 @@
 <h3 class="text-center my-4">Create A Question</h3>
 <div class="row">
     <div class="col-md-6 mx-auto">
-
-        <form [formGroup]="form" (ngSubmit)="submitQuestion()">
-            <div class="form-group">
-                <label>Course:</label>
-                <select class="form-control" formControlName="course_id">
-                    <option *ngFor="let c of courses" [value]="c.CrsId">{{ c.CrsName }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Question:</label>
-                <input type="text" class="form-control" formControlName="question">
-            </div>
-            <div class="form-group">
-                <label>Question Type:</label>
-                <div class="d-flex align-items-center wrap">
-                    <div class="form-group mr-3">
-                        <label>
-                            <input type="radio" value="MCQ" formControlName="question_type"> MCQ
-                        </label>
+        <div class="card card-body">
+            <form [formGroup]="form" (ngSubmit)="submitQuestion()">
+                <div class="form-group">
+                    <label>Course:</label>
+                    <select class="form-control" formControlName="course_id">
+                        <option *ngFor="let c of courses" [value]="c.CrsId">{{ c.CrsName }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Question:</label>
+                    <input type="text" class="form-control" formControlName="question">
+                </div>
+                <div class="form-group">
+                    <label>Question Type:</label>
+                    <div class="d-flex align-items-center wrap">
+                        <div class="form-group mr-3">
+                            <label>
+                                <input type="radio" value="MCQ" formControlName="question_type"> MCQ
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" value="TrueAndFalse" formControlName="question_type"> True And False
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <h3>Answers:</h3>
+                    <hr>
+                </div>
+                <div class="my-4" *ngIf="form.value.question_type == 'MCQ'">
+                    <div class="form-group">
+                        <label style="margin-left: 32px;">Choice 1:</label>
+                        <div class="d-flex align-items-center mt-2">
+                            <input type="radio" formControlName="answer" value="Ans_A">
+                            <input type="text" formControlName="ans_a" class="form-control ml-3">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>
-                            <input type="radio" value="TrueAndFalse" formControlName="question_type"> True And False
-                        </label>
+                        <label style="margin-left: 32px;">Choice 2:</label>
+                        <div class="d-flex align-items-center mt-2">
+                            <input type="radio" formControlName="answer" value="Ans_B">
+                            <input type="text" formControlName="ans_b" class="form-control ml-3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="margin-left: 32px;">Choice 3:</label>
+                        <div class="d-flex align-items-center mt-2">
+                            <input type="radio" formControlName="answer" value="Ans_C">
+                            <input type="text" formControlName="ans_c" class="form-control ml-3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="margin-left: 32px;">Choice 4:</label>
+                        <div class="d-flex align-items-center mt-2">
+                            <input type="radio" formControlName="answer" value="Ans_D">
+                            <input type="text" formControlName="ans_d" class="form-control ml-3">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="my-2">
-                <h3>Answers:</h3>
-                <hr>
-            </div>
-            <div class="my-4" *ngIf="form.value.question_type == 'MCQ'">
-                <div class="form-group">
-                    <label style="margin-left: 32px;">Choice 1:</label>
-                    <div class="d-flex align-items-center mt-2">
-                        <input type="radio" formControlName="answer" value="Ans_A">
-                        <input type="text" formControlName="ans_a" class="form-control ml-3">
+                <div class="my-4" *ngIf="form.value.question_type == 'TrueAndFalse'">
+                    <div>
+                        <div class="my-2">
+                            <label>
+                                <input type="radio" formControlName="answer" value="Ans_A"> True
+                            </label>
+                        </div>
+                        <div class="my-2">
+                            <label>
+                                <input type="radio" formControlName="answer" value="Ans_B"> False
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label style="margin-left: 32px;">Choice 2:</label>
-                    <div class="d-flex align-items-center mt-2">
-                        <input type="radio" formControlName="answer" value="Ans_B">
-                        <input type="text" formControlName="ans_b" class="form-control ml-3">
-                    </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary">Submit</button>
                 </div>
-                <div class="form-group">
-                    <label style="margin-left: 32px;">Choice 3:</label>
-                    <div class="d-flex align-items-center mt-2">
-                        <input type="radio" formControlName="answer" value="Ans_C">
-                        <input type="text" formControlName="ans_c" class="form-control ml-3">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label style="margin-left: 32px;">Choice 4:</label>
-                    <div class="d-flex align-items-center mt-2">
-                        <input type="radio" formControlName="answer" value="Ans_D">
-                        <input type="text" formControlName="ans_d" class="form-control ml-3">
-                    </div>
-                </div>
-            </div>
-            <div class="my-4" *ngIf="form.value.question_type == 'TrueAndFalse'">
-                <div>
-                    <div class="my-2">
-                        <label>
-                            <input type="radio" formControlName="answer" value="Ans_A"> True
-                        </label>
-                    </div>
-                    <div class="my-2">
-                        <label>
-                            <input type="radio" formControlName="answer" value="Ans_B"> False
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+            </form>
+        </div>
     
     </div>
 </div>

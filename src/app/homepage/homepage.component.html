@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-8 mx-auto">
-            <h1 class="text-center">From</h1>
+            <h1 class="text-center my-2">Courses</h1>
             <div class="form-group">
                 <label>Select a course to update:</label>
                 <select class="form-control" [(ngModel)]="selectedCourse">
@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="course_name">Topic:</label>
                         <select name="topic_id" [(ngModel)]="TopicID" class="form-control">
-                            <option value="">--- Choose Topic ---</option>
+                            <option value="" selected>--- Choose Topic ---</option>
                             <option 
                                 *ngFor="let t of topics" 
                                 [value]="t.TopId" >{{ t.TopicName }}</option>

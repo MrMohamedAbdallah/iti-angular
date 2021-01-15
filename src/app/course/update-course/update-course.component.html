@@ -16,8 +16,8 @@
     </div>
     <div class="col-md-3 my-2">
         <div class="form-group">
-            <button 
-                class="btn btn-primary" 
+            <button
+                class="btn btn-primary d-block w-100" 
                 [disabled]="course.CrsName.length < 2"
                 (click)="updateCourse()">Update</button>
         </div>
@@ -31,31 +31,33 @@
 </div>
 <div class="container">
     <div class="row">
-        <form [formGroup]="updateForm" (ngSubmit)="submitCreateExam()">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label># TF Questions:</label>
-                        <input class="form-control" type="number" formControlName="TF">
+        <div class="col-12 px-0">
+            <form [formGroup]="updateForm" (ngSubmit)="submitCreateExam()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label># TF Questions:</label>
+                            <input class="form-control" type="number" formControlName="TF">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label># MCQ Questions:</label>
-                        <input class="form-control" type="number" formControlName="MCQ">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label># MCQ Questions:</label>
+                            <input class="form-control" type="number" formControlName="MCQ">
+                        </div>
                     </div>
+                    <!-- <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Date:</label>
+                            <input class="form-control" type="date">
+                            <input class="form-control" type="date" formControlName="date">
+                        </div>
+                    </div> -->
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Date:</label>
-                        <input class="form-control" type="date">
-                        <!-- <input class="form-control" type="date" formControlName="date"> -->
-                    </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Generate Exam</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Generate Exam</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

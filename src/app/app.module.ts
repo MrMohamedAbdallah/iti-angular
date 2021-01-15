@@ -11,6 +11,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { CreateComponent } from './questions/create/create.component';
 import { SubmitComponent } from './exams/submit/submit.component';
 import { PowerbiComponent } from './powerbi/powerbi.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PowerbiComponent } from './powerbi/powerbi.component';
     QuestionsComponent,
     CreateComponent,
     SubmitComponent,
-    PowerbiComponent
+    PowerbiComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+$colors: (
+    'white': #fff,
+    'light-500': #f2f5f7,
+    'light-600': #e8ebfb,
+    'dark-500': #2c315b,
+    'dark-600': #1f2243,
+    'primary': #6158cf,
+);
+
+@function color($colorName){
+    @return map-get($colors, $colorName);
+}
+
 [disabled]{
     cursor: not-allowed;
 }
+
+body{
+    background-color: color('light-500');
+    color: black;
+
+    .card{
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05); 
+    }
+    .card,
+    .card-body{
+        border: none;
+        color: black;
+        background-color: color('white');
+    }
+    .card-header{
+        background-color: white;
+    }
+    
+
+    // =========== Dark Theme =========== 
+    &.darktheme{
+        color: color('light-600');
+        background-color: color('dark-600');
+        .card{
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, .2); 
+        }
+        .card,
+        .card-body{
+            border: none;
+            background-color: #10163a;
+            color: color('light-600');
+        }
+        .card-header{
+            color: color('light-600');
+            background-color: #10163a;
+            border-color: color('light-600') !important;
+        }
+        .form-control{
+            // background-color: #10163a !important;
+            background-color: color('dark-500') !important;
+            color: color('light-600');
+            border: none;
+        }
+    }
+
+}
+
+.btn{
+    padding: 5px 15px;
+    transition: .3s ease-out;
+    border: none;
+    &:hover{
+        transform: translateY(-2px);
+    }
+}
+
+.btn.btn-primary{
+    background-color: color('primary');
+    padding: 5px 15px;
+    box-shadow: 0px 4px 15px transparentize($color: color('primary'), $amount: 1 - .70);
+    transition: .3s ease-out;
+    border: none;
+    &:hover{
+        transform: translateY(-2px);
+    }
+}
+
