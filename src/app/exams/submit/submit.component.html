@@ -15,15 +15,15 @@
                 </form>
             </div>
 
-            <h6>
+            <h6 *ngIf="questions.length > 1">
                 # Questions: {{ questions.length }}
             </h6>
             <!-- ============= Questions ============= -->
-            <form [formGroup]="answersForm" *ngIf="questions.length" (ngSubmit)="submitAnswers()">
-                <div *ngFor="let q of questions">
-                    <div class="card my-3">
+            <form [formGroup]="answersForm" *ngIf="questions.length > 1" (ngSubmit)="submitAnswers()">
+                <div *ngFor="let q of questions; let i = index;">
+                    <div class="card my-3" *ngIf="i == currentQuestion">
                         <div class="card-header">
-                            <h6 class="card-title">{{ q.question }}</h6>
+                            <h6 class="card-title">{{ i + 1  }} - {{ q.question }}</h6>
                         </div>
                         <div class="card-body">
 
@@ -59,11 +59,21 @@
 
                 </div>
 
-                <div class="form-group my-4">
+                <div class="form-group my-4" *ngIf="currentQuestion == questions.length - 1">
                     <button class="btn btn-primary" [disabled]="!answersForm.valid">Submit Answers</button>
+                    <div class="my-2" *ngIf="!answersForm.valid">
+                        <div class="alert alert-danger">
+                            <small>Please answer all question</small>
+                        </div>
+                    </div>
                 </div>
             </form>
 
+
+            <div class="my-4 d-flex align-items-center justify-content-between" *ngIf="questions.length > 1">
+                <button class="btn btn-light" (click)="previous()">Previous</button>
+                <button class="btn btn-light" (click)="next()">Next</button>
+            </div>
 
         </div>
     </div>

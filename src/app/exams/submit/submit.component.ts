@@ -13,6 +13,7 @@ export class SubmitComponent implements OnInit {
   questions: any[] = [];
   examID: any = null;
   answersForm: FormGroup = null;
+  currentQuestion: number = 0;
 
   constructor(private _http: HttpClient) { }
 
@@ -42,6 +43,7 @@ export class SubmitComponent implements OnInit {
           }
 
           this.answersForm = new FormGroup(inputs);
+          this.currentQuestion = 0;
         },
         (err)=>{
           console.log('Exam Error');
@@ -73,5 +75,20 @@ export class SubmitComponent implements OnInit {
       }
     )
   }
+
+  
+  next(){
+    if(this.currentQuestion == this.questions.length - 1) 
+      return;
+
+    this.currentQuestion += 1;
+  }
+
+  previous(){
+    if(this.currentQuestion == 0) 
+      return;
+    this.currentQuestion -= 1
+  }
+
 
 }
