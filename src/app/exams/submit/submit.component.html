@@ -1,4 +1,38 @@
-<div class="container">
+<div class="container questions-container">
+    <aside>
+        <ul class="questions-container__list" *ngIf="questions.length > 1">
+        <!-- <ul class="questions-container__list"> -->
+            <li 
+                *ngFor="let q of questions; let i = index;"
+                (click)="moveTo(i)"
+                [class.active]="currentQuestion == i">
+                <span>Question #{{ i+1 }}</span>
+                <span 
+                    class="text-success" 
+                    *ngIf="answersForm.value['ans_' + (i+1)]"><i class="fas fa-check"></i></span>
+            </li>
+            <!-- <li>
+                <span>Question #1</span>
+                <span class="text-success"><i class="fas fa-check"></i></span>
+            </li>
+            <li>
+                <span>Question #1</span>
+                <span class="text-success"><i class="fas fa-check"></i></span>
+            </li>
+            <li>
+                <span>Question #1</span>
+                <span class="text-success"><i class="fas fa-check"></i></span>
+            </li>
+            <li>
+                <span>Question #1</span>
+                <span class="text-success"><i class="fas fa-check"></i></span>
+            </li>
+            <li>
+                <span>Question #1</span>
+                <span class="text-success"><i class="fas fa-check"></i></span>
+            </li> -->
+        </ul>
+    </aside>
     <div class="row">
         <div class="col-md-8 mx-auto">
 
@@ -21,7 +55,7 @@
             <!-- ============= Questions ============= -->
             <form [formGroup]="answersForm" *ngIf="questions.length > 1" (ngSubmit)="submitAnswers()">
                 <div *ngFor="let q of questions; let i = index;">
-                    <div class="card my-3" *ngIf="i == currentQuestion">
+                    <div class="card my-3 question-card" *ngIf="i == currentQuestion">
                         <div class="card-header">
                             <h6 class="card-title">{{ i + 1  }} - {{ q.question }}</h6>
                         </div>
@@ -71,8 +105,12 @@
 
 
             <div class="my-4 d-flex align-items-center justify-content-between" *ngIf="questions.length > 1">
-                <button class="btn btn-light" (click)="previous()">Previous</button>
-                <button class="btn btn-light" (click)="next()">Next</button>
+                <button class="btn btn-light" (click)="previous()" [disabled]="currentQuestion == 0">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <button class="btn btn-light" (click)="next()" [disabled]="currentQuestion == questions.length - 1">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
 
         </div>

@@ -90,5 +90,9 @@ export class SubmitComponent implements OnInit {
     this.currentQuestion -= 1
   }
 
+  moveTo(i: number){
+    this.currentQuestion = i;
+  }
+
 
 }
