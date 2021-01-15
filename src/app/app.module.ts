@@ -10,6 +10,7 @@ import { UpdateCourseComponent } from './course/update-course/update-course.comp
 import { QuestionsComponent } from './questions/questions.component';
 import { CreateComponent } from './questions/create/create.component';
 import { SubmitComponent } from './exams/submit/submit.component';
+import { PowerbiComponent } from './powerbi/powerbi.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SubmitComponent } from './exams/submit/submit.component';
     UpdateCourseComponent,
     QuestionsComponent,
     CreateComponent,
-    SubmitComponent
+    SubmitComponent,
+    PowerbiComponent
   ],
   imports: [
     BrowserModule,
