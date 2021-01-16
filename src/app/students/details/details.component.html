@@ -1,4 +1,7 @@
 <div class="container">
+    <h2 *ngIf="courses.length == 0" class="my-4 text-center">
+        The student isn't assigned to any courses yet!
+    </h2>
     <h3 *ngIf="courses.length > 1" class="my-4">
         Student: {{ courses[0].StudentName }}
     </h3>
