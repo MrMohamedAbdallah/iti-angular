@@ -12,6 +12,7 @@ import { CreateComponent } from './questions/create/create.component';
 import { SubmitComponent } from './exams/submit/submit.component';
 import { PowerbiComponent } from './powerbi/powerbi.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ShowAllComponent } from './students/show-all/show-all.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CreateComponent,
     SubmitComponent,
     PowerbiComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShowAllComponent
   ],
   imports: [
     BrowserModule,

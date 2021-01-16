@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="my-5">
+        <div class="card card-body">
+            <table class="table table-light">
+                <thead>
+                    <th>City Name</th>
+                    <th>Dept ID</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of students; let i = index;">
+                        <td>{{ s.CityName }}</td>
+                        <td>{{ s.DeptId }}</td>
+                        <td>{{ s.StudentId }}</td>
+                        <td>{{ s.StudentName }}</td>
+                        <td>{{ s.age }}</td>
+                        <td>{{ s.age  == 'M' ? 'Male' : 'Female' }}</td>
+                        <td>
+                            <a [routerLink]="['/student', s.StudentId]">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
