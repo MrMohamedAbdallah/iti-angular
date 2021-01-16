@@ -13,14 +13,33 @@ export class SubmitComponent implements OnInit {
   questions: any[] = [];
   examID: any = null;
   answersForm: FormGroup = null;
+  coursesForm: FormGroup = null;
   currentQuestion: number = 0;
+  courses: any[] = [];
+  selectedCourse: any = "";
+  exams: any[] = [];
+  
 
   constructor(private _http: HttpClient) { }
 
   ngOnInit(): void {
     this.examForm = new FormGroup({
-      'exam_id': new FormControl('', {validators: [Validators.required]})
+      'exam_id': new FormControl('', {validators: [Validators.required, Validators.min(0)]})
     });
+
+    this.coursesForm = new FormGroup({
+      'course_id': new FormControl('', {validators: [Validators.required]})
+    });
+
+    // Subscribe to course_id changes
+    this.coursesForm.get('course_id').valueChanges.subscribe(v => {
+      if(!v) return;
+      this.exams = [];
+      this.fetchExams(v);
+    })
+
+    this.fetchCourses();
+
   }
 
   getQuestions(){
@@ -93,5 +112,22 @@ export class SubmitComponent implements OnInit {
     this.currentQuestion = i;
   }
 
+
+  fetchCourses(){
+    // Get courses from API
+    this._http.get('http://127.0.0.1:5000/get_courses') 
+    .subscribe((data: any )=> {
+      this.courses = data.result;
+    })
+  }
+
+  fetchExams(course_id){
+    // Get courses from API
+    this._http.get('http://127.0.0.1:5000/exams_of_students/' + course_id) 
+    .subscribe((data: any )=> {
+      this.exams = data.result;
+      console.log(this.exams);
+    })
+  }
 
 }

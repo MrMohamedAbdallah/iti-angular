@@ -2,12 +2,14 @@
     <div class="row">
         <div class="col-12 col-md-8 mx-auto">
             <h1 class="text-center my-2">Courses</h1>
-            <div class="form-group">
-                <label>Select a course to update:</label>
-                <select class="form-control" [(ngModel)]="selectedCourse">
-                    <option *ngFor="let c of courses" [value]="c.CrsId">{{ c.CrsName }}</option>
-                </select>
-            </div>
+            <form [formGroup]="coursesForm">
+                <div class="form-group">
+                    <label>Select a course to update:</label>
+                    <select class="form-control" formControlName="course_id">
+                        <option *ngFor="let c of courses" [value]="c.CrsId">{{ c.CrsName }}</option>
+                    </select>
+                </div>
+            </form>
             <div *ngFor="let c of courses">
                 <app-update-course *ngIf="c.CrsId == selectedCourse" [course]="c" [topics]="topics" (updated)="fetchCourses()"></app-update-course> 
             </div>
