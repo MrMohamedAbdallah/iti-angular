@@ -13,6 +13,7 @@ import { SubmitComponent } from './exams/submit/submit.component';
 import { PowerbiComponent } from './powerbi/powerbi.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShowAllComponent } from './students/show-all/show-all.component';
+import { DetailsComponent } from './students/details/details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShowAllComponent } from './students/show-all/show-all.component';
     SubmitComponent,
     PowerbiComponent,
     NavbarComponent,
-    ShowAllComponent
+    ShowAllComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

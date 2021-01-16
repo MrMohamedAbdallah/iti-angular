@@ -4,6 +4,7 @@ import { SubmitComponent } from './exams/submit/submit.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PowerbiComponent } from './powerbi/powerbi.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { DetailsComponent } from './students/details/details.component';
 import { ShowAllComponent } from './students/show-all/show-all.component';
 
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'questions', component: QuestionsComponent},
   {path: 'exams', component: SubmitComponent},
   {path: 'power-bi', component: PowerbiComponent},
-  {path: 'students', component: ShowAllComponent}
+  {path: 'students', component: ShowAllComponent},
+  {path: 'students/:student', component: DetailsComponent},
 ];
 
 @NgModule({

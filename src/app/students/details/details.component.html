@@ -1,0 +1,31 @@
+<div class="container">
+    <h3 *ngIf="courses.length > 1" class="my-4">
+        Student: {{ courses[0].StudentName }}
+    </h3>
+    <div class="row">
+        <div *ngFor="let c of courses; let i = index;" class="col-12 col-sm-6 col-lg-4 my-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="d-flex align-items-center justify-content-between">
+                        <span>{{ c.CrsName }}</span>
+                        <span>{{ c.Grade }} / {{ c.TotalGrade }}</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="opacity: .9">City</span>
+                        <span class="font-weight-bold">{{ c.CityName }}</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="opacity: .9">Instructor</span>
+                        <span class="font-weight-bold">{{ c.InsName }}</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="opacity: .9">Instructor Salary</span>
+                        <span class="font-weight-bold">{{ c.salary.split('.')[0] }} EGP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
