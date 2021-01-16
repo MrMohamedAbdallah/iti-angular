@@ -22,7 +22,7 @@
                         <td>{{ s.age }}</td>
                         <td>{{ s.age  == 'M' ? 'Male' : 'Female' }}</td>
                         <td>
-                            <a [routerLink]="['/students', s.StudentId]">View</a>
+                            <a class="text-primary" [routerLink]="['/students', s.StudentId]">View</a>
                         </td>
                     </tr>
                 </tbody>

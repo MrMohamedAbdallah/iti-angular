@@ -82,3 +82,59 @@ body{
     }
 }
 
+.text-primary{
+    color: color('primary') !important;
+}
+
+.bg-primary{
+    background-color: color('primary') !important;
+}
+
+.table{
+    font-size: .8rem;
+    font-weight: 600;
+    thead{
+        font-weight: bold;
+        // background-color: #e3e3ff !important;
+        background-color: color('primary') !important;
+        color: color('white');
+
+    }
+    tbody{
+        tr{
+            transition: .2s ease-out;
+            transform: translateY(-2px);
+            cursor: pointer;
+            &:hover{
+                background-color: #efefff !important;
+            }
+        }
+    }
+    td{
+        border-color: #fbfcfc;
+    }
+}
+
+body.darktheme{
+    .table{
+        background-color: #10163a;
+        color: color('light-600');
+        thead{
+            font-weight: bold;
+            background-color: color('primary') !important;
+        }
+        tbody{
+            tr{
+                transition: .2s ease-out;
+                transform: translateY(-2px);
+                cursor: pointer;
+                &:hover{
+                    background-color: color('dark-500') !important;
+                }
+            }
+        }
+    }
+    thead, tbody, tr, th,td{
+        border-color: transparent !important;
+    }
+}
