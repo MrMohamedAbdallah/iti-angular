@@ -8,7 +8,7 @@
                 [class.active]="currentQuestion == i">
                 <span>Question #{{ i+1 }}</span>
                 <span 
-                    class="text-success" 
+                    class="" 
                     *ngIf="answersForm.value['ans_' + (i+1)]"><i class="fas fa-check"></i></span>
             </li>
             <!-- <li>
