@@ -27,9 +27,8 @@ export class SubmitComponent implements OnInit {
     this.examID = this.examForm.value.exam_id;
     const headers = new HttpHeaders().set('Content-Type', 'application/json;charset=utf-8');
     const params = new HttpParams().set('exam_id', this.examID);
-    this._http.get('http://127.0.0.1:5000/get_exam_questions', {
+    this._http.get('http://127.0.0.1:5000/get_exam_questions/' + this.examID, {
       headers,
-      params,
     })
       .subscribe(
         (res: any)=>{
