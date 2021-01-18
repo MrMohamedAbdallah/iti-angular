@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   wrongInfo: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private _http: HttpClient, private _auth: AuthService, private _router: Router) { }
 
@@ -24,18 +25,24 @@ export class LoginComponent implements OnInit {
 
     this._auth.userStatus.subscribe((status)=>{
       if(status){
-        this._router.navigate(['/exams']);
+        this._router.navigate(['/profile']);
       }
     })
+
+    if(this._auth.isLogged){
+      this._router.navigate(['/profile']);
+    }
   }
 
   login(){
+    this.isLoading = true;
     this._http.post('http://127.0.0.1:5000/login_user', {
       "type": "StudentView",
       ...this.loginForm.value
     })
     .subscribe(
       (res: any)=>{
+        this.isLoading = false;
         if(res.status == 401){
           this.wrongInfo = true;
           return;
@@ -48,6 +55,7 @@ export class LoginComponent implements OnInit {
       (err)=>{
         console.log('Login Error')
         console.error(err);
+        this.isLoading = false;
       }
     )
   }

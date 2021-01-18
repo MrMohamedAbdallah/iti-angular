@@ -24,6 +24,7 @@ export class SubmitComponent implements OnInit {
   username: string = '';
   userID: number = null;
   isLoading: boolean = false;
+  submitLoading: boolean = false;
   
 
   constructor(private _http: HttpClient, private _auth: AuthService, private _router: Router) { }
@@ -90,10 +91,15 @@ export class SubmitComponent implements OnInit {
 
 
   submitAnswers(){
+    this.submitLoading = true;
+    let headers = new HttpHeaders().set('x-access-tokens', this._auth.token)
+
     this._http.post('http://127.0.0.1:5000/store_students_questions', {
       'exam_id': this.examID,
       'student_id': this.userID,
       ...this.answersForm.value
+    }, {
+      headers,
     })
     .subscribe(
       (res: any)=>{
@@ -107,10 +113,12 @@ export class SubmitComponent implements OnInit {
         this.coursesForm.reset();
 
         this.noti = 'You got ' + res.result.GRADE;
+        this.submitLoading = false;
       },
       (err)=>{
         console.log('Error In Answering The Exam');
         console.error(err);
+        this.submitLoading = false;
       }
     )
   }

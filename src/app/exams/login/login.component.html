@@ -21,7 +21,17 @@
                             [class.is-invalid]="">
                     </div>
                     <div class="form-group mt-4 text-center">
-                        <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
+                        <span *ngIf="isLoading">
+                            <div class="lds-ellipsis">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </span>
+                        <button class="btn btn-primary btn-block" *ngIf="!isLoading" [disabled]="loginForm.invalid">
+                            Login
+                        </button>
                     </div>
                 </form>
             </div>

@@ -116,7 +116,15 @@
                 </div>
 
                 <div class="form-group my-4" *ngIf="currentQuestion == questions.length - 1">
-                    <button class="btn btn-primary" [disabled]="!answersForm.valid">Submit Answers</button>
+                    <div *ngIf="submitLoading" class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <button class="btn btn-primary" *ngIf="!submitLoading" [disabled]="!answersForm.valid || submitLoading">
+                        Submit Answers
+                    </button>
                     <div class="my-2" *ngIf="!answersForm.valid">
                         <div class="alert alert-danger">
                             <small>Please answer all question</small>

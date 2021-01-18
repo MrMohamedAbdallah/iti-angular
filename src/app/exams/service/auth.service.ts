@@ -16,13 +16,15 @@ export class AuthService {
   constructor() {
 
     if(localStorage.getItem('token')){
+      console.log('HERE', localStorage.getItem('token'));
       this.token = localStorage.getItem('token');
       this.username = localStorage.getItem('username');
       this.userID = parseInt(localStorage.getItem('userID'));
       this.isLogged = true;
+    } else {
+      this.isLogged = false;
     }
-
-    this.updateStatus(true);
+    
   }
 
   login(token: any, username: any, userID: any){
@@ -38,7 +40,9 @@ export class AuthService {
   }
 
   logout(){
+    let theme = localStorage.getItem('darktheme');
     localStorage.clear();
+    localStorage.setItem('darktheme', theme );
     
     this.updateStatus(false);
   }
