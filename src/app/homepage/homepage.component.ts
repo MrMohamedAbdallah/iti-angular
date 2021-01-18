@@ -14,6 +14,7 @@ export class HomepageComponent implements OnInit {
   courseName: string = "";
   selectedCourse: any = null;
   TopicID: any = "";
+  noti: string = "";
 
   constructor(private _http: HttpClient) { }
 
@@ -31,6 +32,16 @@ export class HomepageComponent implements OnInit {
       (data)=>{
         console.log("Course Added");
         this.fetchCourses();
+        this.noti = `The course "${this.courseName}" added successfully.`;
+
+        setTimeout(()=>{
+          this.noti = "";
+        }, 5000);
+
+        this.TopicID = "";
+        this.courseName = "";
+
+
       },
       (err) => {
         console.log("ERROR In Post");

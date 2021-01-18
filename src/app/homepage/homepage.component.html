@@ -11,6 +11,10 @@
             <div *ngFor="let c of courses">
                 <app-update-course *ngIf="c.CrsId == selectedCourse" [course]="c" [topics]="topics" (updated)="fetchCourses()"></app-update-course> 
             </div>
+
+            <div class="my-4" *ngIf="noti">
+                <div class="alert alert-primary">{{ noti }}</div>
+            </div>
             <div class="card card-body my-5">
                 <form class="">
                     <div class="form-group">
