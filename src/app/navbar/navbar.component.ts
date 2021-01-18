@@ -28,14 +28,14 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  toggle(e){
+  toggle(){
     this.darktheme = !this.darktheme;
     if(this.darktheme){
       this.add();
     } else {
       this.remove();
     }
-    console.log(e.target)
+
     localStorage.setItem('darktheme', this.darktheme ? 'true' : 'false');
   }
 
