@@ -14,6 +14,8 @@ import { PowerbiComponent } from './powerbi/powerbi.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShowAllComponent } from './students/show-all/show-all.component';
 import { DetailsComponent } from './students/details/details.component';
+import { LoginComponent } from './exams/login/login.component';
+import { AuthService } from './exams/service/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DetailsComponent } from './students/details/details.component';
     PowerbiComponent,
     NavbarComponent,
     ShowAllComponent,
-    DetailsComponent
+    DetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { DetailsComponent } from './students/details/details.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

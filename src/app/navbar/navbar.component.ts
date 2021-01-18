@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../exams/service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   darktheme: boolean = false;
-  constructor() { }
+  isLogged: boolean = false;
+  username: string = '';
+  constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
 
@@ -16,6 +19,13 @@ export class NavbarComponent implements OnInit {
       this.darktheme = stored == 'true' ? false : true;
       this.toggle();
     }
+
+    this.isLogged = this._auth.isLogged;
+    this.username = this._auth.username;
+    this._auth.userStatus.subscribe(status => {
+      this.isLogged = status
+      this.username = this._auth.username;
+    });
   }
 
   toggle(){
@@ -40,4 +50,9 @@ export class NavbarComponent implements OnInit {
     document.querySelector('.navbar').classList.remove('darktheme');
   }
 
+  
+  logout(){
+    this._auth.logout();
+  }
+  
 }

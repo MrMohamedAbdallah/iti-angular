@@ -23,6 +23,15 @@
             <li class="nav-item">
                 <span style="cursor: pointer;" class="nav-link" (click)="toggle()">{{ darktheme ? 'Light' : 'Dark' }} theme</span>
             </li>
+            <li class="nav-item" *ngIf="!isLogged">
+                <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="isLogged">
+                <a routerLink="/profile" routerLinkActive="active" class="nav-link">{{ username }}</a>
+            </li>
+            <li class="nav-item" *ngIf="isLogged">
+                <span style="cursor: pointer;" class="nav-link" (click)="logout()">Logout</span>
+            </li>
         </ul>
     </div>
 </nav>
