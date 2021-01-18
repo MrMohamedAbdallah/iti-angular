@@ -45,6 +45,14 @@
                     </div>
                 </form>
                 <form class="" [formGroup]="examForm" (ngSubmit)="getQuestions()">
+                    <div class="text-center">
+                        <div class="lds-ellipsis" *ngIf="isLoading">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
                     <div *ngIf="exams.length && exams[0].GenerationDate">
 
                         <div class="form-group">

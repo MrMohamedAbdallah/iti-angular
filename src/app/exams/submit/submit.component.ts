@@ -23,6 +23,7 @@ export class SubmitComponent implements OnInit {
   noti: string = "";
   username: string = '';
   userID: number = null;
+  isLoading: boolean = false;
   
 
   constructor(private _http: HttpClient, private _auth: AuthService, private _router: Router) { }
@@ -143,11 +144,13 @@ export class SubmitComponent implements OnInit {
 
   fetchExams(course_id){
     this.examForm.reset();
+    this.isLoading = true;
     // Get courses from API
     this._http.get('http://127.0.0.1:5000/exams_of_students/' + course_id + '/' + this.userID) 
     .subscribe((data: any )=> {
       this.exams = data.result;
       console.log(this.exams);
+      this.isLoading = false;
     })
   }
 
