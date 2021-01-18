@@ -16,6 +16,7 @@ import { ShowAllComponent } from './students/show-all/show-all.component';
 import { DetailsComponent } from './students/details/details.component';
 import { LoginComponent } from './exams/login/login.component';
 import { AuthService } from './exams/service/auth.service';
+import { ProfileComponent } from './exams/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './exams/service/auth.service';
     NavbarComponent,
     ShowAllComponent,
     DetailsComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

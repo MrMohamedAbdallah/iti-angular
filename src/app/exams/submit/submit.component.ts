@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-submit',
@@ -19,9 +21,11 @@ export class SubmitComponent implements OnInit {
   selectedCourse: any = "";
   exams: any[] = [];
   noti: string = "";
+  username: string = '';
+  userID: number = null;
   
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _auth: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
     this.examForm = new FormGroup({
@@ -29,8 +33,7 @@ export class SubmitComponent implements OnInit {
     });
 
     this.coursesForm = new FormGroup({
-      'course_id': new FormControl('', {validators: [Validators.required]}),
-      'student_id': new FormControl('', {validators: [Validators.required, Validators.min(0)]})
+      'course_id': new FormControl('', {validators: [Validators.required]})
     });
 
     // Subscribe to course_id changes
@@ -38,9 +41,19 @@ export class SubmitComponent implements OnInit {
       if(!this.coursesForm.valid) return;
 
       this.exams = [];
-      this.fetchExams(this.coursesForm.value.course_id, this.coursesForm.value.student_id);
+      this.fetchExams(this.coursesForm.value.course_id);
     })
-
+    
+    // Subscribe to login
+    this.username = this._auth.username;
+    this.userID = this._auth.userID;
+    this._auth.userStatus.subscribe(status => {
+      if(!status){
+        this._router.navigate(['/login']);
+      }
+    })
+    
+    // Fetch Student Courses
     this.fetchCourses();
 
   }
@@ -78,7 +91,7 @@ export class SubmitComponent implements OnInit {
   submitAnswers(){
     this._http.post('http://127.0.0.1:5000/store_students_questions', {
       'exam_id': this.examID,
-      'student_id': this.coursesForm.value.student_id,
+      'student_id': this.userID,
       ...this.answersForm.value
     })
     .subscribe(
@@ -122,15 +135,16 @@ export class SubmitComponent implements OnInit {
 
   fetchCourses(){
     // Get courses from API
-    this._http.get('http://127.0.0.1:5000/get_courses') 
+    this._http.get('http://127.0.0.1:5000/students_courses/' + this.userID) 
     .subscribe((data: any )=> {
       this.courses = data.result;
     })
   }
 
-  fetchExams(course_id, student_id){
+  fetchExams(course_id){
+    this.examForm.reset();
     // Get courses from API
-    this._http.get('http://127.0.0.1:5000/exams_of_students/' + course_id + '/' + student_id) 
+    this._http.get('http://127.0.0.1:5000/exams_of_students/' + course_id + '/' + this.userID) 
     .subscribe((data: any )=> {
       this.exams = data.result;
       console.log(this.exams);

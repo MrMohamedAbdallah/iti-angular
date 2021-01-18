@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,16 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsComponent implements OnInit {
 
   courses: any[] = [];
+  @Input('userID') userID = null;
 
   constructor(private _http: HttpClient, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._route.params.subscribe(params => {
-      let student = params['student'];
 
-      this.getStudentCourses(student);
-
-    });
+    if(this.userID == null){
+      this._route.params.subscribe(params => {
+        let student = params['student'];
+        
+        this.getStudentCourses(student);
+        
+      });
+    } else {
+      this.getStudentCourses(this.userID);
+    }
   }
 
   getStudentCourses(studentID: any){

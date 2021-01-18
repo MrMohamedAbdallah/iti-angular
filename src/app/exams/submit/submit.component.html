@@ -43,12 +43,8 @@
                             <option *ngFor="let c of courses" [value]="c.CrsId">{{ c.CrsName }}</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Student</label>
-                        <input type="number" min="1" formControlName="student_id" class="form-control">
-                    </div>
                 </form>
-                <form class="" [formGroup]="examForm" (ngSubmit)="getQuestions()" *ngIf="coursesForm.valid">
+                <form class="" [formGroup]="examForm" (ngSubmit)="getQuestions()">
                     <div *ngIf="exams.length && exams[0].GenerationDate">
 
                         <div class="form-group">

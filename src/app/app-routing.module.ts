@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './exams/login/login.component';
+import { ProfileComponent } from './exams/profile/profile.component';
 import { SubmitComponent } from './exams/submit/submit.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PowerbiComponent } from './powerbi/powerbi.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'students', component: ShowAllComponent},
   {path: 'students/:student', component: DetailsComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent},
 ];
 
 @NgModule({
